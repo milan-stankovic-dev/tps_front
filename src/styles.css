@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 2px solid black;
+  }
+  
+  .table_head th, .table_body td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .table_head {
+    background-color: #f2f2f2; 
+  }
+  

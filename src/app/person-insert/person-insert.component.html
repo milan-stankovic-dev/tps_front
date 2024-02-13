@@ -1,0 +1,34 @@
+<h1 class = "title">{{ title }}</h1>
+
+<form [formGroup] = "insertForm">
+    <div class="field">
+      <label class="lbl">First Name:   </label>
+      <input type="text" class="input" 
+      placeholder="Input first name: " 
+      formControlName="firstName"
+      required>
+    </div>
+    <br>
+    <div class="field">
+      <label class="lbl">Last Name:   </label>
+      <input type="text" class="input" 
+      placeholder="Input last name: " 
+      formControlName="lastName"
+      required>
+    </div>
+    <br>
+    <div class="field">
+      <label class="lbl">Date of Birth:   </label>
+      <input type="text" class="input" 
+      placeholder="format: yyyy/MM/dd" 
+      formControlName="dateOfBirth"
+      required>
+    </div>
+    <br>
+    <div class="field">
+      <label class="lbl">Age (months):   </label>
+      <input type="text" class="input" 
+      placeholder="calculating age..." 
+      formControlName="age">
+    </div>
+</form>
