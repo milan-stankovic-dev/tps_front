@@ -3,5 +3,5 @@ export interface Person{
     firstName: string;
     lastName: string;
     dateOfBirth: string;
-    age: number;
+    ageInMonths: number;
 }

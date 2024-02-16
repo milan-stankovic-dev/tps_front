@@ -13,7 +13,7 @@ export class PersonListComponent {
       firstName: "Pera",
       lastName: "Peric",
       dateOfBirth: "1999/01/01",
-      age: 25
+      ageInMonths: 301
     }
   ];
 }
