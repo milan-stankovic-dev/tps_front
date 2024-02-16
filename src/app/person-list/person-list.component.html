@@ -7,7 +7,10 @@
             <th>Last Name: </th>
             <th>Date of birth: </th>
             <th>Age (months): </th>
-            <th>City: </th>
+            <th>City of birth name: </th>
+            <th>City of birth code: </th>
+            <th>City of residence name: </th>
+            <th>City of residence code: </th>
         </tr>
     </thead>
     <tbody class = "table_body">
@@ -15,9 +18,12 @@
             <td>{{person.id}}</td>
             <td>{{person.firstName}} </td>
             <td>{{person.lastName}}</td>
-            <td>{{person.dateOfBirth}}</td>
+            <td>{{person.dOB}}</td>
             <td>{{person.ageInMonths}}</td>
-            <td>"N/A"</td>
+            <td>{{person.cityOfBirthName}}</td>
+            <td>{{person.cityOfBirthPTBR}}</td>
+            <td>{{person.cityOfResidenceName}}</td>
+            <td>{{person.cityOfResidencePTBR}}</td>
             </tr>
     </tbody>
 </table>

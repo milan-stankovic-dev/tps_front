@@ -8,6 +8,8 @@ import { PersonInsertComponent } from './person-insert/person-insert.component';
 import { PersonListComponent } from './person-list/person-list.component';
 import { HeaderComponent } from './header/header.component';
 import { RouterLink } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { RouterLink } from '@angular/router';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
