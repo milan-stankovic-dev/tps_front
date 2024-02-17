@@ -8,6 +8,11 @@
       formControlName="firstName"
       required>
     </div>
+    <div class="error-message"
+    *ngIf="insertForm.get('firstName')?.dirty">
+     <br>
+      {{ getErrorMessage(insertForm.get('firstName')) }}
+    </div>
     <br>
     <div class="field">
       <label class="lbl">Last Name:   </label>
@@ -15,6 +20,11 @@
       placeholder="Input last name: " 
       formControlName="lastName"
       required>
+    </div>
+    <div class="error-message"
+    *ngIf="insertForm.get('lastName')?.dirty">
+     <br>
+     {{ getErrorMessage(insertForm.get('lastName')) }}
     </div>
     <br>
     <div class="field">
@@ -24,11 +34,52 @@
       formControlName="dateOfBirth"
       required>
     </div>
+    <div class="error-message"
+    *ngIf="insertForm.get('dateOfBirth')?.dirty">
+     <br>
+     {{ getErrorMessage(insertForm.get('dateOfBirth')) }}
+    </div>
+    <br>
+    <div class="field">
+      <label class="lbl">Birth city code:   </label>
+      <input type="number" class="input" 
+      placeholder="Input Birth City Code: "
+      formControlName="birthCityCode">
+    </div>
+    <div class="error-message"
+    *ngIf="insertForm.get('birthCityCode')?.dirty">
+     <br>
+     {{ getErrorMessage(insertForm.get('dateOfBirth')) }}
+    </div>
+    <br>
+    <div class="field">
+      <label class="lbl">Residence city code:   </label>
+      <input type="number" class="input" 
+      placeholder="Input Residence City Code: " 
+      formControlName="residenceCityCode">
+    </div>
+    <div class="error-message"
+    *ngIf="insertForm.get('residenceCityCode')?.dirty">
+     <br>
+     {{ getErrorMessage(insertForm.get('residenceCityCode')) }}
+    </div>
     <br>
     <div class="field">
       <label class="lbl">Age (months):   </label>
-      <input type="text" class="input" 
+      <input type="number" class="input" 
       placeholder="calculating age..." 
       formControlName="age">
     </div>
+    <br>
+    <div style="display: flex;">
+      <div style="margin-right: 30px;">
+        <button class="frm-btn" type="submit" 
+        *ngIf="isSaveVisible()" (click)="savePerson()" 
+        [disabled] = "!insertForm.valid">Save</button>
+      </div>
+      <div>
+        <button class="frm-btn" type="submit"
+        *ngIf="!isSaveVisible()">Update</button>
+      </div>
+      </div>
 </form>

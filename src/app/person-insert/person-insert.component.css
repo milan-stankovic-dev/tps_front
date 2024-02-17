@@ -1,0 +1,9 @@
+.frm-btn{
+    padding: 10px;
+    border: 2px solid black;
+}
+
+.frm-btn:active {
+    background-color: #dddddd; 
+    border: 2px solid #333333; 
+}

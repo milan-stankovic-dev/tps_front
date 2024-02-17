@@ -10,19 +10,7 @@ import { PersonService } from '../service/person.service';
 })
 export class PersonListComponent implements OnInit {
   
-  persons:PersonDisplay[]= [
-    {
-      id: 1,
-      firstName: "Pera",
-      lastName: "Peric",
-      dOB: new Date('1999-01-01'),
-      ageInMonths: 301,
-      cityOfBirthName: 'Zajecar',
-      cityOfBirthPTBR: 11000,
-      cityOfResidenceName: 'Zajecar',
-      cityOfResidencePTBR: 11000
-    }
-  ];
+  persons:PersonDisplay[]= [];
 
   constructor (private personService: PersonService){ }
 
