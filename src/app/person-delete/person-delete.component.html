@@ -1,0 +1,13 @@
+<h1>Select a person</h1>
+<select class = "drop-down"
+        [(ngModel)] = "selectedId">
+    <option value = "" disabled selected>
+        Select a person to delete
+    </option>
+    <option *ngFor="let person of persons" [value]="person.id">
+        {{ person.firstName + ' ' + person.lastName}}
+    </option>
+</select>
+<br>
+<br>
+<button (click)="deletePersonByID(selectedId)"> DELETE </button>

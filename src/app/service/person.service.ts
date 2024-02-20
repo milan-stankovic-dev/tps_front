@@ -23,7 +23,7 @@ export class PersonService {
   }
 
   deletePersonById(id:number):Observable<never>{
-    return this.http.delete<never>(`${this.apiUrl}\${id}`);
+    return this.http.delete<never>(`${this.apiUrl}/${id}`);
   }
 
   updatePerson(person:PersonSave):Observable<PersonSave>{

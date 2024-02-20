@@ -1,4 +1,16 @@
 <h1 class="title">Person data:</h1>
+<label>SEARCH BY NAME:   </label>
+<input type="text" placeholder="Search..." 
+        [(ngModel)] = "nameSearch"
+        (keyup)="filterBy('firstName', nameSearch)" >
+<br>
+<br>
+<label>SEARCH BY LAST NAME:   </label>
+<input type="text" placeholder="Search..."
+        [(ngModel)] = "lastNameSearch"
+        (keyup)="filterBy('lastName', lastNameSearch)">
+<br>
+<br>
 <table class="table">
     <thead class="table_head">
         <tr>
@@ -14,7 +26,7 @@
         </tr>
     </thead>
     <tbody class = "table_body">
-        <tr *ngFor="let person of persons;">
+        <tr *ngFor="let person of filteredPersons;">
             <td>{{person.id}}</td>
             <td>{{person.firstName}} </td>
             <td>{{person.lastName}}</td>
