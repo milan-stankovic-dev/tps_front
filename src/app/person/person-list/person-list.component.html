@@ -1,4 +1,5 @@
 <h1 class="title">Person data:</h1>
+<div *ngIf="displayExtras">
 <label>SEARCH BY NAME:   </label>
 <input type="text" placeholder="Search..." 
         [(ngModel)] = "nameSearch"
@@ -11,6 +12,7 @@
         (keyup)="filterBy('lastName', lastNameSearch)">
 <br>
 <br>
+</div>
 <table class="table">
     <thead class="table_head">
         <tr>

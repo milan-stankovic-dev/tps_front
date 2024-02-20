@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PersonSave } from '../domain/PersonSave';
-import { PersonService } from '../service/person.service';
-import { dateValidator } from '../validator/date.validator';
-import { DATE_PATTERN, NAME_PATTERN } from '../pattern/regexPatterns';
+import { PersonSave } from 'src/app/domain/PersonSave';
+import { PersonService } from 'src/app/service/person.service';
+import { dateValidator } from 'src/app/validator/date.validator';
+import { DATE_PATTERN, NAME_PATTERN } from '../../pattern/regexPatterns';
 
 @Component({
   selector: 'app-person-insert',
   templateUrl: './person-insert.component.html',
   styleUrls: ['./person-insert.component.css', 
-  '../../styles.css']
+  '../../../styles.css']
 })
 export class PersonInsertComponent {
   title = 'Insert Person';

@@ -1,7 +1,7 @@
 <h1>Select a person</h1>
 <select class = "drop-down"
         [(ngModel)] = "selectedId">
-    <option value = "" disabled selected>
+    <option value = undefined disabled selected>
         Select a person to delete
     </option>
     <option *ngFor="let person of persons" [value]="person.id">
@@ -11,3 +11,6 @@
 <br>
 <br>
 <button (click)="deletePersonByID(selectedId)"> DELETE </button>
+<br>
+<app-person-list *ngIf="findByIdLocally(selectedId).length > 0" [displayExtras]="false" 
+[filteredPersons]="findByIdLocally(selectedId)"></app-person-list>

@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { PersonDisplay } from '../domain/PersonDisplay';
-import { PersonService } from '../service/person.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { PersonDisplay } from 'src/app/domain/PersonDisplay';
+import { PersonService } from 'src/app/service/person.service';
 
 @Component({
   selector: 'app-person-list',
   templateUrl: './person-list.component.html',
   styleUrls: ['./person-list.component.css',
-    '../../styles.css']
+    '../../../styles.css']
 })
 export class PersonListComponent implements OnInit {
-  
   persons:PersonDisplay[]= [];
-  filteredPersons: PersonDisplay[]= [];
+  @Input() filteredPersons: PersonDisplay[] = [];
   nameSearch: string = '';
   lastNameSearch: string = '';
-
+  @Input() displayExtras: boolean = true;
+ 
   constructor (private personService: PersonService){ }
 
   ngOnInit(): void {

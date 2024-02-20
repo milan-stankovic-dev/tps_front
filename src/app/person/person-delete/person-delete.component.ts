@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { PersonDisplay } from '../domain/PersonDisplay';
-import { PersonService } from '../service/person.service';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { PersonDisplay } from '../../domain/PersonDisplay';
+import { PersonService } from '../../service/person.service';
 
 @Component({
   selector: 'app-person-delete',
@@ -9,7 +9,7 @@ import { PersonService } from '../service/person.service';
 })
 export class PersonDeleteComponent implements OnInit{
   persons: PersonDisplay[] = [];
-  selectedId: number|null = null;
+  selectedId: number|undefined = undefined;
 
   constructor(private personService:
      PersonService) { }
@@ -24,8 +24,8 @@ export class PersonDeleteComponent implements OnInit{
     })
   }
 
-  deletePersonByID(id: number | null):void {
-    if(id == null){
+  deletePersonByID(id: number | undefined):void {
+    if(id === undefined){
       alert("You need to select a person for deletion.");
       return;
     }
@@ -35,7 +35,9 @@ export class PersonDeleteComponent implements OnInit{
 
     if(userConfirmed){
       this.personService.deletePersonById(id).subscribe((response)=>{
-        this.removePersonLocallyByID(id);
+        this.persons = this.filterPersonsBy(id, 
+          (deletedId, currentId) => deletedId != currentId);
+        this.selectedId = undefined;
         alert("Deleted successfully!");
       },
       (error) => {
@@ -45,11 +47,19 @@ export class PersonDeleteComponent implements OnInit{
     }
   }
 
-  removePersonLocallyByID(id: number | null):void{
-    if(id == null){
-      return;
+  filterPersonsBy(id: number | undefined,
+         comparison: (a:number, b:number) => boolean):PersonDisplay[] {
+    if(id == undefined) {
+      return this.persons;
     }
-    
-    this.persons = this.persons.filter((person)=> person.id != id);
+    return this.persons.filter((person)=> comparison(person.id, id));
+  }
+  
+  findByIdLocally(id:number | undefined): PersonDisplay[] {
+    if(id == undefined){
+      return [];
+    }
+    return this.filterPersonsBy(id,
+       (wantedID, currentID) => wantedID == currentID);
   }
 }
