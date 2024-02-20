@@ -4,12 +4,13 @@
     <div class="field">
       <label class="lbl">First Name:   </label>
       <input type="text" class="input" 
-      placeholder="Input first name: " 
+      placeholder="format: Capitalized, 30 char max " 
       formControlName="firstName"
       required>
     </div>
     <div class="error-message"
-    *ngIf="insertForm.get('firstName')?.dirty">
+    *ngIf="insertForm.get('firstName')?.dirty 
+        && insertForm.get('firstName')?.errors">
      <br>
       {{ getErrorMessage(insertForm.get('firstName')) }}
     </div>
@@ -17,12 +18,13 @@
     <div class="field">
       <label class="lbl">Last Name:   </label>
       <input type="text" class="input" 
-      placeholder="Input last name: " 
+      placeholder="format: Capitalized, 30 char max " 
       formControlName="lastName"
       required>
     </div>
     <div class="error-message"
-    *ngIf="insertForm.get('lastName')?.dirty">
+    *ngIf="insertForm.get('lastName')?.dirty 
+        && insertForm.get('lastName')?.errors">
      <br>
      {{ getErrorMessage(insertForm.get('lastName')) }}
     </div>
@@ -35,7 +37,8 @@
       required>
     </div>
     <div class="error-message"
-    *ngIf="insertForm.get('dateOfBirth')?.dirty">
+    *ngIf="insertForm.get('dateOfBirth')?.dirty
+        && insertForm.get('dateOfBirth')?.errors">
      <br>
      {{ getErrorMessage(insertForm.get('dateOfBirth')) }}
     </div>
@@ -43,23 +46,25 @@
     <div class="field">
       <label class="lbl">Birth city code:   </label>
       <input type="number" class="input" 
-      placeholder="Input Birth City Code: "
+      placeholder="format: From 11000 to 40000"
       formControlName="birthCityCode">
     </div>
     <div class="error-message"
-    *ngIf="insertForm.get('birthCityCode')?.dirty">
+    *ngIf="insertForm.get('birthCityCode')?.dirty
+        && insertForm.get('birthCityCode')?.errors">
      <br>
-     {{ getErrorMessage(insertForm.get('dateOfBirth')) }}
+     {{ getErrorMessage(insertForm.get('birthCityCode')) }}
     </div>
     <br>
     <div class="field">
       <label class="lbl">Residence city code:   </label>
       <input type="number" class="input" 
-      placeholder="Input Residence City Code: " 
+      placeholder="format: From 11000 to 40000" 
       formControlName="residenceCityCode">
     </div>
     <div class="error-message"
-    *ngIf="insertForm.get('residenceCityCode')?.dirty">
+    *ngIf="insertForm.get('residenceCityCode')?.dirty
+        && insertForm.get('residenceCityCode')?.errors">
      <br>
      {{ getErrorMessage(insertForm.get('residenceCityCode')) }}
     </div>

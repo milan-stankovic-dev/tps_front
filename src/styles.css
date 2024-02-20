@@ -20,3 +20,8 @@
     color: red;
     font-weight: bold;
   }
+
+.input{
+  min-width: 200px;
+  width: auto;
+}

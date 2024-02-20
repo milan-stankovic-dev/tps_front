@@ -3,26 +3,33 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { PersonSave } from '../domain/PersonSave';
 import { PersonService } from '../service/person.service';
 import { dateValidator } from '../validator/date.validator';
+import { DATE_PATTERN, NAME_PATTERN } from '../pattern/regexPatterns';
 
 @Component({
   selector: 'app-person-insert',
   templateUrl: './person-insert.component.html',
-  styleUrls: ['./person-insert.component.css']
+  styleUrls: ['./person-insert.component.css', 
+  '../../styles.css']
 })
 export class PersonInsertComponent {
   title = 'Insert Person';
   insertForm: FormGroup;
-
+  datePattern: RegExp = DATE_PATTERN;
+  namePattern: RegExp = NAME_PATTERN;
 
   constructor(private fb: FormBuilder,
                private personService: PersonService){
     this.insertForm = this.fb.group(
       {
-        firstName: ['', Validators.required,Validators.minLength(2), Validators.maxLength(30)],
-        lastName: ['', Validators.required, Validators.minLength(2), Validators.maxLength(30)],
-        dateOfBirth: ['', Validators.required],
-        birthCityCode: ['', Validators.required, Validators.min(11000), Validators.max(40000)],
-        residenceCityCode: ['', Validators.required, Validators.min(11000), Validators.max(40000)],
+        firstName: ['', [Validators.required,Validators.minLength(2), 
+          Validators.maxLength(30), Validators.pattern(this.namePattern)]],
+        lastName: ['', [Validators.required, Validators.minLength(2),
+           Validators.maxLength(30), Validators.pattern(this.namePattern)]],
+        dateOfBirth: ['', [Validators.required, Validators.pattern(this.datePattern)]],
+        birthCityCode: ['', [Validators.required, Validators.min(11000), 
+          Validators.max(40000)]],
+        residenceCityCode: ['', [Validators.required, Validators.min(11000),
+           Validators.max(40000)]],
         age: [{value: '', disabled: true}]
       }
     );
@@ -66,9 +73,8 @@ export class PersonInsertComponent {
     if(control?.hasError('min')){
       stringResp = stringResp.concat('\nMin value is 11000.');
     }
-    if(control?.hasError('dateValidation')){
-      stringResp = stringResp.concat('\nInvalid date format.' +
-       'Correct format is "yyyy-MM-dd".');
+    if(control?.hasError('pattern')){
+      stringResp = stringResp.concat('\nInvalid format.');
     }
     return stringResp;
   }
