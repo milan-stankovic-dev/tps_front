@@ -1,6 +1,12 @@
 <h1 class = "title">{{ title }}</h1>
 
 <form [formGroup] = "insertForm">
+  <div class="field" *ngIf="!isSaveVisible()">
+    <label class="lbl">ID:    </label>
+    <input type="text" class="input" 
+    formControlName="id">
+  </div>
+  <br *ngIf="!isSaveVisible()">
     <div class="field">
       <label class="lbl">First Name:   </label>
       <input type="text" class="input" 
@@ -84,7 +90,8 @@
       </div>
       <div>
         <button class="frm-btn" type="submit"
-        *ngIf="!isSaveVisible()">Update</button>
+        *ngIf="!isSaveVisible()" (click)="updatePerson()"
+        [disabled]="!insertForm.valid">Update</button>
       </div>
       </div>
 </form>

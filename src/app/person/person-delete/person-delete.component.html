@@ -2,7 +2,7 @@
 <select class = "drop-down"
         [(ngModel)] = "selectedId">
     <option value = undefined disabled selected>
-        Select a person to delete
+        Select a person to {{ mode }}
     </option>
     <option *ngFor="let person of persons" [value]="person.id">
         {{ person.firstName + ' ' + person.lastName}}
@@ -10,7 +10,16 @@
 </select>
 <br>
 <br>
-<button (click)="deletePersonByID(selectedId)"> DELETE </button>
-<br>
-<app-person-list *ngIf="findByIdLocally(selectedId).length > 0" [displayExtras]="false" 
+<button *ngIf="mode == 'delete'" (click)="deletePersonByID(
+    selectedId)"> DELETE </button>
+
+<app-person-insert *ngIf="findByIdLocally(selectedId).length > 0 &&
+    mode == 'update'" [title]="'Update Person'" 
+    [personForUpdate]="personDisplayToSave(
+        findByIdLocally(selectedId)[0])"
+    ></app-person-insert>
+
+<app-person-list *ngIf="findByIdLocally(selectedId).length > 0 && 
+    mode == 'delete'" [displayExtras]="false" 
 [filteredPersons]="findByIdLocally(selectedId)"></app-person-list>
+

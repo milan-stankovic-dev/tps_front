@@ -17,8 +17,6 @@ export class PersonService {
   }
 
   savePerson(person:PersonSave):Observable<PersonSave>{
-    alert(JSON.stringify(`${this.apiUrl}`));
-    alert(JSON.stringify(person));
     return this.http.post<PersonSave>(`${this.apiUrl}`, person);
   }
 

@@ -1,7 +1,8 @@
 export interface PersonSave{
+    id: number|null,
     firstName: string,
     lastName: string,
     dOB: Date,
-    birthCityCode: string,
-    residenceCityCode: string
+    birthCityCode: number,
+    residenceCityCode: number
 }

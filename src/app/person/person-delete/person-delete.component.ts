@@ -1,6 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PersonDisplay } from '../../domain/PersonDisplay';
 import { PersonService } from '../../service/person.service';
+import { personDisplayToSave } from 'src/app/converter/personConverter';
+import { PersonSave } from 'src/app/domain/PersonSave';
 
 @Component({
   selector: 'app-person-delete',
@@ -10,6 +12,8 @@ import { PersonService } from '../../service/person.service';
 export class PersonDeleteComponent implements OnInit{
   persons: PersonDisplay[] = [];
   selectedId: number|undefined = undefined;
+  @Input() mode:string = 'delete';
+  personDisplayToSave: Function = personDisplayToSave;
 
   constructor(private personService:
      PersonService) { }
