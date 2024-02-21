@@ -2,14 +2,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PersonDisplay } from '../../domain/PersonDisplay';
 import { PersonService } from '../../service/person.service';
 import { personDisplayToSave } from 'src/app/converter/personConverter';
-import { PersonSave } from 'src/app/domain/PersonSave';
 
 @Component({
-  selector: 'app-person-delete',
-  templateUrl: './person-delete.component.html',
-  styleUrls: ['./person-delete.component.css']
+  selector: 'app-person-dropdown',
+  templateUrl: './person-dropdown.component.html',
+  styleUrls: ['./person-dropdown.component.css']
 })
-export class PersonDeleteComponent implements OnInit{
+export class PersonDropdownComponent implements OnInit{
   persons: PersonDisplay[] = [];
   selectedId: number|undefined = undefined;
   @Input() mode:string = 'delete';

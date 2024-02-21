@@ -1,26 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PersonInsertComponent } from './person/person-insert/person-insert.component';  
-import { PersonListComponent } from './person/person-list/person-list.component';  
-import { PersonDeleteComponent } from './person/person-delete/person-delete.component';
+import { PersonFormComponent } from './person/person-form/person-form.component';  
+import { PersonTableComponent } from './person/person-table/person-table.component';  
+import { PersonDropdownComponent } from './person/person-dropdown/person-dropdown.component';
 import { PersonUpdateComponent } from './person/person-update/person-update.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: PersonInsertComponent
+    component: PersonFormComponent
   },
   {
     path: 'insert',
-    component: PersonInsertComponent
+    component: PersonFormComponent
   },
   {
     path: 'list',
-    component: PersonListComponent
+    component: PersonTableComponent
   },
   {
     path: 'delete',
-    component: PersonDeleteComponent
+    component: PersonDropdownComponent
   },
   {
     path: 'update',
@@ -28,7 +28,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: PersonInsertComponent
+    component: PersonFormComponent
   }
 ];
 

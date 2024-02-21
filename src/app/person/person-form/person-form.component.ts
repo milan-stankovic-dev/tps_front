@@ -8,11 +8,11 @@ import { calculateAgeInMonths } from 'src/app/utility/personUtility';
 
 @Component({
   selector: 'app-person-insert',
-  templateUrl: './person-insert.component.html',
-  styleUrls: ['./person-insert.component.css', 
+  templateUrl: './person-form.component.html',
+  styleUrls: ['./person-form.component.css', 
   '../../../styles.css']
 })
-export class PersonInsertComponent {
+export class PersonFormComponent {
   @Input() title = 'Insert Person';
   insertForm: FormGroup;
   datePattern: RegExp = DATE_PATTERN;

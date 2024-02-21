@@ -4,22 +4,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PersonInsertComponent } from './person/person-insert/person-insert.component';
-import { PersonListComponent } from './person/person-list/person-list.component'; 
+import { PersonFormComponent } from './person/person-form/person-form.component';
+import { PersonTableComponent } from './person/person-table/person-table.component'; 
 import { HeaderComponent } from './header/header.component';
 import { RouterLink } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { PersonDeleteComponent } from './person/person-delete/person-delete.component';
+import { PersonDropdownComponent } from './person/person-dropdown/person-dropdown.component';
 import { PersonUpdateComponent } from './person/person-update/person-update.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PersonInsertComponent,
-    PersonListComponent,
+    PersonFormComponent,
+    PersonTableComponent,
     HeaderComponent,
-    PersonDeleteComponent,
+    PersonDropdownComponent,
     PersonUpdateComponent,
   ],
   imports: [

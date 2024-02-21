@@ -4,11 +4,11 @@ import { PersonService } from 'src/app/service/person.service';
 
 @Component({
   selector: 'app-person-list',
-  templateUrl: './person-list.component.html',
-  styleUrls: ['./person-list.component.css',
+  templateUrl: './person-table.component.html',
+  styleUrls: ['./person-table.component.css',
     '../../../styles.css']
 })
-export class PersonListComponent implements OnInit {
+export class PersonTableComponent implements OnInit {
   persons:PersonDisplay[]= [];
   @Input() filteredPersons: PersonDisplay[] = [];
   nameSearch: string = '';

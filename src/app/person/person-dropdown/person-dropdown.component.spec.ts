@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PersonDeleteComponent } from './person-delete.component';
+import { PersonDropdownComponent } from './person-dropdown.component';
 
 describe('PersonDeleteComponent', () => {
-  let component: PersonDeleteComponent;
-  let fixture: ComponentFixture<PersonDeleteComponent>;
+  let component: PersonDropdownComponent;
+  let fixture: ComponentFixture<PersonDropdownComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PersonDeleteComponent]
+      declarations: [PersonDropdownComponent]
     });
-    fixture = TestBed.createComponent(PersonDeleteComponent);
+    fixture = TestBed.createComponent(PersonDropdownComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
