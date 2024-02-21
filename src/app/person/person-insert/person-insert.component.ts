@@ -1,9 +1,9 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PersonSave } from 'src/app/domain/PersonSave';
 import { PersonService } from 'src/app/service/person.service';
 import { DATE_PATTERN, NAME_PATTERN } from '../../pattern/regexPatterns';
-import { Observable } from 'rxjs';
+import { Observable, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-person-insert',
@@ -11,12 +11,27 @@ import { Observable } from 'rxjs';
   styleUrls: ['./person-insert.component.css', 
   '../../../styles.css']
 })
-export class PersonInsertComponent implements OnChanges{
+export class PersonInsertComponent {
   @Input() title = 'Insert Person';
   insertForm: FormGroup;
   datePattern: RegExp = DATE_PATTERN;
-  namePattern: RegExp = NAME_PATTERN;
-  @Input() personForUpdate: PersonSave|undefined = undefined; 
+  namePattern: RegExp = NAME_PATTERN; 
+  @Output() updated: EventEmitter<boolean> = 
+    new EventEmitter<boolean>();
+
+  private displayedPerson: PersonSave | undefined;
+
+  @Input()
+  set personForUpdate(value: PersonSave | undefined){
+    if (value && JSON.stringify(value)
+     !== JSON.stringify(this.displayedPerson)) {
+
+      this.displayedPerson = { ...value};
+      this.updateFormWithNewPerson(value);
+      console.log("Updated person");
+    }
+
+  }
 
   constructor(private fb: FormBuilder,
                private personService: PersonService){
@@ -36,21 +51,20 @@ export class PersonInsertComponent implements OnChanges{
       }
     );
   }
-  ngOnChanges(changes: SimpleChanges): void {
-    if(changes['personForUpdate'] && this.personForUpdate){
-      this.updateFormWithNewPerson(this.personForUpdate);
-    }
-  }
 
-  updateFormWithNewPerson(person:PersonSave): void {
-    this.insertForm.patchValue({
-      id: person.id,
-      firstName: person.firstName,
-      lastName: person.lastName,
-      dateOfBirth: person.dOB,
-      birthCityCode: person.birthCityCode,
-      residenceCityCode: person.residenceCityCode
-    });
+  updateFormWithNewPerson(person: PersonSave | undefined): void {
+    if (person) {
+      this.insertForm.setValue({
+        id: person.id,
+        firstName: person.firstName,
+        lastName: person.lastName,
+        dateOfBirth: person.dOB,
+        birthCityCode: person.birthCityCode,
+        residenceCityCode: person.residenceCityCode,
+        age: ''
+      });
+      console.log("Updated form with new person")
+    }
   }
 
   isSaveVisible():boolean{
@@ -70,6 +84,7 @@ export class PersonInsertComponent implements OnChanges{
     apiCallFunction.bind(this.personService)(personToSave).subscribe(
       (savedPerson) => {
         alert("Person Saved! " + JSON.stringify(savedPerson));
+        this.updated.emit(true);
       },
       (error) => {
         alert("ERROR HAPPENED! " + JSON.stringify(error.error));

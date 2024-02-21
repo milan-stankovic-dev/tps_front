@@ -14,11 +14,11 @@ export class PersonDeleteComponent implements OnInit{
   selectedId: number|undefined = undefined;
   @Input() mode:string = 'delete';
   personDisplayToSave: Function = personDisplayToSave;
-
+  
   constructor(private personService:
      PersonService) { }
 
-  ngOnInit(): void {
+  fetchAllUsersAPICall() : void {
     this.personService.getAllPersons().subscribe((response) =>{
       this.persons = response;
     },
@@ -26,6 +26,10 @@ export class PersonDeleteComponent implements OnInit{
       alert("ERROR OCCURED.");
       console.log(error.error);
     })
+  }
+
+  ngOnInit(): void {
+    this.fetchAllUsersAPICall();
   }
 
   deletePersonByID(id: number | undefined):void {
@@ -65,5 +69,11 @@ export class PersonDeleteComponent implements OnInit{
     }
     return this.filterPersonsBy(id,
        (wantedID, currentID) => wantedID == currentID);
+  }
+
+  onPersonUpdated(updated:boolean):void{
+    if(updated){
+      this.fetchAllUsersAPICall();
+    }
   }
 }

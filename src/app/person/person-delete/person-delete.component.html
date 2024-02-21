@@ -17,6 +17,7 @@
     mode == 'update'" [title]="'Update Person'" 
     [personForUpdate]="personDisplayToSave(
         findByIdLocally(selectedId)[0])"
+        (updated)="onPersonUpdated($event)"
     ></app-person-insert>
 
 <app-person-list *ngIf="findByIdLocally(selectedId).length > 0 && 
