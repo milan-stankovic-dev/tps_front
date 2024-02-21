@@ -4,6 +4,7 @@ import { PersonSave } from 'src/app/domain/PersonSave';
 import { PersonService } from 'src/app/service/person.service';
 import { DATE_PATTERN, NAME_PATTERN } from '../../pattern/regexPatterns';
 import { Observable, distinctUntilChanged } from 'rxjs';
+import { calculateAgeInMonths } from 'src/app/utility/personUtility';
 
 @Component({
   selector: 'app-person-insert',
@@ -16,6 +17,7 @@ export class PersonInsertComponent {
   insertForm: FormGroup;
   datePattern: RegExp = DATE_PATTERN;
   namePattern: RegExp = NAME_PATTERN; 
+  // calculateAge: Function = calculateAgeInMonths;
   @Output() updated: EventEmitter<boolean> = 
     new EventEmitter<boolean>();
 
@@ -31,6 +33,16 @@ export class PersonInsertComponent {
       console.log("Updated person");
     }
 
+  }
+
+  calculateAgeIfPossible():number {
+    const dateInputted = this.insertForm
+                          .get('dateOfBirth')?.value;
+    if(DATE_PATTERN.test(dateInputted)){
+      return calculateAgeInMonths(dateInputted);
+    }
+
+    return NaN;
   }
 
   constructor(private fb: FormBuilder,
@@ -91,6 +103,7 @@ export class PersonInsertComponent {
       }
     );
   }
+
 
   getErrorMessage(control: AbstractControl | null):string {
     let stringResp = '';

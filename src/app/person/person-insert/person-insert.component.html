@@ -79,7 +79,8 @@
       <label class="lbl">Age (months):   </label>
       <input type="number" class="input" 
       placeholder="calculating age..." 
-      formControlName="age">
+      formControlName="age"
+      [value]="calculateAgeIfPossible()">
     </div>
     <br>
     <div style="display: flex;">
