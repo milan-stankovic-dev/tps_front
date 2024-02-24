@@ -36,6 +36,20 @@
     </div>
     <br>
     <div class="field">
+      <label class="lbl">Height in cm:   </label>
+      <input type="number" class="input" 
+      placeholder="format: From 70 to 260. " 
+      formControlName="heightInCm"
+      required>
+    </div>
+    <div class="error-message"
+    *ngIf="insertForm.get('heightInCm')?.dirty 
+        && insertForm.get('heightInCm')?.errors">
+     <br>
+      {{ getErrorMessage(insertForm.get('heightInCm')) }}
+    </div>
+    <br>
+    <div class="field">
       <label class="lbl">Date of Birth:   </label>
       <input type="text" class="input" 
       placeholder="format: yyyy/MM/dd" 

@@ -6,8 +6,9 @@ export function personDisplayToSave(personDisplay:PersonDisplay):PersonSave{
         id: personDisplay.id,
         firstName: personDisplay.firstName,
         lastName: personDisplay.lastName,
+        heightInCm: personDisplay.heightInCm,
         dOB: personDisplay.dOB,
-        birthCityCode: personDisplay.cityOfBirthPTBR,
-        residenceCityCode: personDisplay.cityOfResidencePTBR
+        birthCityCode: personDisplay.cityOfBirthPPTBR,
+        residenceCityCode: personDisplay.cityOfResidencePPTBR
     };
 }

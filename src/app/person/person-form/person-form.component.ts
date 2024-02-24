@@ -20,7 +20,7 @@ export class PersonFormComponent {
   // calculateAge: Function = calculateAgeInMonths;
   @Output() updated: EventEmitter<boolean> = 
     new EventEmitter<boolean>();
-
+  
   private displayedPerson: PersonSave | undefined;
 
   @Input()
@@ -52,8 +52,13 @@ export class PersonFormComponent {
         id: [{ value: '', disabled: true }],
         firstName: ['', [Validators.required,Validators.minLength(2), 
           Validators.maxLength(30), Validators.pattern(this.namePattern)]],
-        lastName: ['', [Validators.required, Validators.minLength(2),
+        lastName: ['', [Validators.minLength(2),
            Validators.maxLength(30), Validators.pattern(this.namePattern)]],
+        heightInCm: ['', [Validators.required
+        , Validators.min(70), 
+          Validators.max(260)
+        ]
+        ],
         dateOfBirth: ['', [Validators.required, Validators.pattern(this.datePattern)]],
         birthCityCode: ['', [Validators.required, Validators.min(11000), 
           Validators.max(40000)]],
@@ -70,10 +75,11 @@ export class PersonFormComponent {
         id: person.id,
         firstName: person.firstName,
         lastName: person.lastName,
+        heightInCm: person.heightInCm,
         dateOfBirth: person.dOB,
         birthCityCode: person.birthCityCode,
         residenceCityCode: person.residenceCityCode,
-        age: ''
+        age: this.calculateAgeIfPossible()
       });
       console.log("Updated form with new person")
     }
@@ -88,6 +94,7 @@ export class PersonFormComponent {
       id: this.insertForm.get('id')!.value,
       firstName: this.insertForm.get('firstName')!.value,
       lastName: this.insertForm.get('lastName')!.value,
+      heightInCm: this.insertForm.get('heightInCm')!.value,
       dOB: this.insertForm.get('dateOfBirth')!.value,
       birthCityCode: this.insertForm.get('birthCityCode')!.value,
       residenceCityCode: this.insertForm.get('residenceCityCode')!.value
@@ -118,7 +125,7 @@ export class PersonFormComponent {
      stringResp = stringResp.concat('\nMax length is 30.');
     }
     if(control?.hasError('max')){
-      stringResp = stringResp.concat('\nMax value is 40000.');
+      stringResp = stringResp.concat('\nMax value exceeded.');
     }
     if(control?.hasError('min')){
       stringResp = stringResp.concat('\nMin value is 11000.');

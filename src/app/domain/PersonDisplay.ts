@@ -2,10 +2,11 @@ export interface PersonDisplay {
     id: number; 
     firstName: string,
     lastName: string,
+    heightInCm: number,
     dOB: Date,
     ageInMonths: number,
     cityOfBirthName: string,
-    cityOfBirthPTBR: number,
+    cityOfBirthPPTBR: number,
     cityOfResidenceName: string,
-    cityOfResidencePTBR: number
+    cityOfResidencePPTBR: number
 }

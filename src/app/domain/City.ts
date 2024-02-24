@@ -1,6 +1,6 @@
 export interface City{
     id: number;
-    ptpBr: number;
+    pptpBr: number;
     name: string;
     population: number;
     city: City;
