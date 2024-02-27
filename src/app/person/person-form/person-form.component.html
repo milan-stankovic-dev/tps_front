@@ -8,9 +8,9 @@
   </div>
   <br *ngIf="!isSaveVisible()">
     <div class="field">
-      <label class="lbl">First Name:   </label>
+      <label class="lbl">Ime:   </label>
       <input type="text" class="input" 
-      placeholder="format: Capitalized, 30 char max " 
+      placeholder="format: Veliko slovo, 30 slova maks " 
       formControlName="firstName"
       required>
     </div>
@@ -22,9 +22,9 @@
     </div>
     <br>
     <div class="field">
-      <label class="lbl">Last Name:   </label>
+      <label class="lbl">Prezime:   </label>
       <input type="text" class="input" 
-      placeholder="format: Capitalized, 30 char max " 
+      placeholder="format: Veliko slovo, 30 slova maks " 
       formControlName="lastName"
       required>
     </div>
@@ -36,9 +36,9 @@
     </div>
     <br>
     <div class="field">
-      <label class="lbl">Height in cm:   </label>
+      <label class="lbl">Visina u cm:   </label>
       <input type="number" class="input" 
-      placeholder="format: From 70 to 260. " 
+      placeholder="format: Od 70 do 260. " 
       formControlName="heightInCm"
       required>
     </div>
@@ -50,7 +50,7 @@
     </div>
     <br>
     <div class="field">
-      <label class="lbl">Date of Birth:   </label>
+      <label class="lbl">Datum rođenja:   </label>
       <input type="text" class="input" 
       placeholder="format: yyyy/MM/dd" 
       formControlName="dateOfBirth"
@@ -64,9 +64,9 @@
     </div>
     <br>
     <div class="field">
-      <label class="lbl">Birth city code:   </label>
+      <label class="lbl">PPT rodnog grada:   </label>
       <input type="number" class="input" 
-      placeholder="format: From 11000 to 40000"
+      placeholder="format: Od 11000 do 40000"
       formControlName="birthCityCode">
     </div>
     <div class="error-message"
@@ -77,9 +77,9 @@
     </div>
     <br>
     <div class="field">
-      <label class="lbl">Residence city code:   </label>
+      <label class="lbl">PPT grada stanovanja:   </label>
       <input type="number" class="input" 
-      placeholder="format: From 11000 to 40000" 
+      placeholder="format: Od 11000 do 40000" 
       formControlName="residenceCityCode">
     </div>
     <div class="error-message"
@@ -90,9 +90,9 @@
     </div>
     <br>
     <div class="field">
-      <label class="lbl">Age (months):   </label>
+      <label class="lbl">Starost (u mesecima):   </label>
       <input type="number" class="input" 
-      placeholder="calculating age..." 
+      placeholder="računam starost..." 
       formControlName="age"
       [value]="calculateAgeIfPossible()">
     </div>
@@ -101,13 +101,13 @@
       <div style="margin-right: 30px;">
         <button class="frm-btn" type="submit" 
         *ngIf="isSaveVisible()" (click)="savePerson()" 
-        [disabled] = "!insertForm.valid">Save</button>
+        [disabled] = "!insertForm.valid">Sačuvaj</button>
       </div>
       <div>
         <button class="frm-btn" type="submit"
         *ngIf="!isSaveVisible()" (click)="updatePerson()"
         [disabled]="!insertForm.valid"
-        >Update</button>
+        >Ažuriraj</button>
       </div>
       </div>
 </form>

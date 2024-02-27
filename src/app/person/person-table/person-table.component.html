@@ -1,13 +1,13 @@
-<h1 class="title">Person data:</h1>
+<h1 class="title">Podaci o osobama:</h1>
 <div *ngIf="displayExtras">
-<label>SEARCH BY NAME:   </label>
-<input type="text" placeholder="Search..." 
+<label>PRETRAGA PO IMENU:   </label>
+<input type="text" placeholder="Pretraži..." 
         [(ngModel)] = "nameSearch"
         (keyup)="filterBy('firstName', nameSearch)" >
 <br>
 <br>
-<label>SEARCH BY LAST NAME:   </label>
-<input type="text" placeholder="Search..."
+<label>PRETRAGA PO PREZIMENU:   </label>
+<input type="text" placeholder="Pretraži..."
         [(ngModel)] = "lastNameSearch"
         (keyup)="filterBy('lastName', lastNameSearch)">
 <br>
@@ -17,15 +17,15 @@
     <thead class="table_head">
         <tr>
             <th>ID:</th>
-            <th>First Name: </th>
-            <th>Last Name: </th>
-            <th>Height in cm: </th>
-            <th>Date of birth: </th>
-            <th>Age (months): </th>
-            <th>City of birth name: </th>
-            <th>City of birth code: </th>
-            <th>City of residence name: </th>
-            <th>City of residence code: </th>
+            <th>Ime: </th>
+            <th>Prezime: </th>
+            <th>Visina u cm: </th>
+            <th>Datum rođenja: </th>
+            <th>Starost (u mesecima): </th>
+            <th>Ime rodnog grada: </th>
+            <th>PPT rodnog grada: </th>
+            <th>Ime grada stanovanja: </th>
+            <th>PPT grada stanovanja: </th>
         </tr>
     </thead>
     <tbody class = "table_body">

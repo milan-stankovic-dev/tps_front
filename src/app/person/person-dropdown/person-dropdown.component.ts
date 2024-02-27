@@ -6,12 +6,12 @@ import { personDisplayToSave } from 'src/app/converter/personConverter';
 @Component({
   selector: 'app-person-dropdown',
   templateUrl: './person-dropdown.component.html',
-  styleUrls: ['./person-dropdown.component.css']
+  styleUrls: ['./person-dropdown.component.css', '../../../styles.css']
 })
 export class PersonDropdownComponent implements OnInit{
   persons: PersonDisplay[] = [];
   selectedId: number|undefined = undefined;
-  @Input() mode:string = 'delete';
+  @Input() mode:string = 'brisanje';
   personDisplayToSave: Function = personDisplayToSave;
   
   constructor(private personService:
@@ -22,7 +22,7 @@ export class PersonDropdownComponent implements OnInit{
       this.persons = response;
     },
     (error) => {
-      alert("ERROR OCCURED.");
+      alert("DOŠLO JE DO GREŠKE. PROVERITE LOGOVE.");
       console.log(error.error);
     })
   }
@@ -33,22 +33,22 @@ export class PersonDropdownComponent implements OnInit{
 
   deletePersonByID(id: number | undefined):void {
     if(id === undefined){
-      alert("You need to select a person for deletion.");
+      alert("Morate izabrati osobu za brisanje.");
       return;
     }
 
-    const userConfirmed = window.confirm("Are you sure you want to " + 
-    "delete this user? This cannot be undone.");
+    const userConfirmed = window.confirm("Da li ste sigurni da želite " + 
+    "da obrišete osobu? Brisanje je trajno.");
 
     if(userConfirmed){
       this.personService.deletePersonById(id).subscribe((response)=>{
         this.persons = this.filterPersonsBy(id, 
           (deletedId, currentId) => deletedId != currentId);
         this.selectedId = undefined;
-        alert("Deleted successfully!");
+        alert("Brisanje uspešno!");
       },
       (error) => {
-        alert("ERROR " + JSON.stringify(error.error));
+        alert("GREŠKA " + JSON.stringify(error.error));
         console.log(error.error);
       });
     }

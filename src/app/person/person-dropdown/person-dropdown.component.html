@@ -1,8 +1,8 @@
-<h1>Select a person</h1>
+<h1>Izaberite osobu</h1>
 <select class = "drop-down"
         [(ngModel)] = "selectedId">
     <option value = undefined disabled selected>
-        Select a person to {{ mode }}
+        Izaberite osobu za {{ mode }}
     </option>
     <option *ngFor="let person of persons" [value]="person.id">
         {{ person.firstName + ' ' + person.lastName}}
@@ -10,17 +10,17 @@
 </select>
 <br>
 <br>
-<button *ngIf="mode == 'delete'" (click)="deletePersonByID(
-    selectedId)"> DELETE </button>
+<button class="frm-btn" *ngIf="mode == 'brisanje'" (click)="deletePersonByID(
+    selectedId)"> OBRIŠI </button>
 
 <app-person-insert *ngIf="findByIdLocally(selectedId).length > 0 &&
-    mode == 'update'" [title]="'Update Person'" 
+    mode == 'ažuriranje'" [title]="'Ažuriraj Osobu'" 
     [personForUpdate]="personDisplayToSave(
         findByIdLocally(selectedId)[0])"
         (updated)="onPersonUpdated($event)"
     ></app-person-insert>
 
 <app-person-list *ngIf="findByIdLocally(selectedId).length > 0 && 
-    mode == 'delete'" [displayExtras]="false" 
+    mode == 'brisanje'" [displayExtras]="false" 
 [filteredPersons]="findByIdLocally(selectedId)"></app-person-list>
 

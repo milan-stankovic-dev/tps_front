@@ -13,7 +13,7 @@ import { calculateAgeInMonths } from 'src/app/utility/personUtility';
   '../../../styles.css']
 })
 export class PersonFormComponent {
-  @Input() title = 'Insert Person';
+  @Input() title = 'Unesite Osobu';
   insertForm: FormGroup;
   datePattern: RegExp = DATE_PATTERN;
   namePattern: RegExp = NAME_PATTERN; 
@@ -30,7 +30,7 @@ export class PersonFormComponent {
 
       this.displayedPerson = { ...value};
       this.updateFormWithNewPerson(value);
-      console.log("Updated person");
+      console.log("Osoba ažurirana");
     }
 
   }
@@ -81,12 +81,12 @@ export class PersonFormComponent {
         residenceCityCode: person.residenceCityCode,
         age: this.calculateAgeIfPossible()
       });
-      console.log("Updated form with new person")
+      console.log("Forma ažurirana sa novom osobom.")
     }
   }
 
   isSaveVisible():boolean{
-      return this.title === 'Insert Person';
+      return this.title === 'Unesite Osobu';
   }
 
   saveOrUpdatePerson(apiCallFunction: (p: PersonSave) => Observable<PersonSave>) {
@@ -102,11 +102,11 @@ export class PersonFormComponent {
 
     apiCallFunction.bind(this.personService)(personToSave).subscribe(
       (savedPerson) => {
-        alert("Person Saved! " + JSON.stringify(savedPerson));
+        alert("Osoba Sačuvana! " + JSON.stringify(savedPerson));
         this.updated.emit(true);
       },
       (error) => {
-        alert("ERROR HAPPENED! " + JSON.stringify(error.error));
+        alert("DOŠLO JE DO GREŠKE! " + JSON.stringify(error.error));
       }
     );
   }
@@ -116,22 +116,22 @@ export class PersonFormComponent {
     let stringResp = '';
     
     if(control?.hasError('required')){
-      stringResp = stringResp.concat('This field is required.');
+      stringResp = stringResp.concat('Ovo polje je obavezno.');
     }
     if(control?.hasError('minlength')){
-      stringResp = stringResp.concat('\nMin length is 2.');
+      stringResp = stringResp.concat('\nMinimalna dužina je 2.');
     }
     if(control?.hasError('maxlength')){
-     stringResp = stringResp.concat('\nMax length is 30.');
+     stringResp = stringResp.concat('\nMaksimalna dužina je 30.');
     }
     if(control?.hasError('max')){
-      stringResp = stringResp.concat('\nMax value exceeded.');
+      stringResp = stringResp.concat('\nMaksimalna vrednost prekoračena.');
     }
     if(control?.hasError('min')){
-      stringResp = stringResp.concat('\nMin value is 11000.');
+      stringResp = stringResp.concat('\nMinimalna vrednost je 11000.');
     }
     if(control?.hasError('pattern')){
-      stringResp = stringResp.concat('\nInvalid format.');
+      stringResp = stringResp.concat('\nPogrešan format.');
     }
     return stringResp;
   }

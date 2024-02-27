@@ -2,7 +2,7 @@ import { DATE_PATTERN } from "../pattern/regexPatterns";
 
 export function calculateAgeInMonths(birthDate: string):number{
     if(!DATE_PATTERN.test(birthDate)){
-        throw new Error('Birth date does not match desired format.');
+        throw new Error('Datum rođenja nije u odgovarajućem formatu.');
     }
 
     const todaysDate:Date = new Date();
