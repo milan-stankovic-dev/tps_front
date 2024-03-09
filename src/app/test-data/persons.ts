@@ -12,7 +12,7 @@ export const PERSONS: PersonDisplay[] = [
         cityOfBirthName: 'Beograd',
         cityOfBirthPPTBR: 11000,
         cityOfResidenceName: 'Beograd',
-        cityOfResidencePPTBR: 11000
+        cityOfResidencePPTBR: 11_000
     },
     {
         id: 2,
@@ -24,7 +24,7 @@ export const PERSONS: PersonDisplay[] = [
         cityOfBirthName: 'Niš',
         cityOfBirthPPTBR: 18000,
         cityOfResidenceName: 'Beograd',
-        cityOfResidencePPTBR: 11000
+        cityOfResidencePPTBR: 11_000
     },
     {
         id: 3,
@@ -34,9 +34,9 @@ export const PERSONS: PersonDisplay[] = [
         dOB: new Date(1999,12,26),
         ageInMonths: 200,
         cityOfBirthName: 'Niš',
-        cityOfBirthPPTBR: 18000,
+        cityOfBirthPPTBR: 18_000,
         cityOfResidenceName: 'Beograd',
-        cityOfResidencePPTBR: 11000
+        cityOfResidencePPTBR: 11_000
     }
 ];
 
@@ -46,8 +46,8 @@ export const PERSON_SAVE: PersonSave = {
     lastName: 'Zarić',
     heightInCm: 163,
     dOB: new Date(2001,10,10),
-    birthCityCode: 19000,
-    residenceCityCode: 19000
+    birthCityCode: 19_000,
+    residenceCityCode: 19_000
 }
 
 export const PERSON_UPDATE: PersonSave = {
@@ -56,6 +56,38 @@ export const PERSON_UPDATE: PersonSave = {
     lastName: 'Perić',
     heightInCm: 165,
     dOB: new Date(2002,10,10),
-    birthCityCode: 19000,
-    residenceCityCode: 19000
+    birthCityCode: 19_000,
+    residenceCityCode: 19_000
 }
+
+export const ADULTS: PersonDisplay[] = PERSONS;
+
+export const SMEDEREVCI : PersonDisplay[] = [
+    {
+        id: 7,
+        firstName: 'Stefan',
+        lastName : 'Đorđević',
+        heightInCm: 170,
+        dOB: new Date(1960,10,12),
+        ageInMonths: 430,
+        cityOfBirthName: 'Smederevo',
+        cityOfBirthPPTBR: 11_300,
+        cityOfResidenceName: 'Smederevo',
+        cityOfResidencePPTBR: 11_300
+    },
+    {
+        id: 10,
+        firstName: 'Marija',
+        lastName : 'Počuča',
+        heightInCm: 165,
+        dOB: new Date(2003,9,23),
+        ageInMonths: 170,
+        cityOfBirthName: 'Smederevo',
+        cityOfBirthPPTBR: 11_300,
+        cityOfResidenceName: 'Beograd',
+        cityOfResidencePPTBR: 11_000
+    }
+];
+
+export const MAX_HEIGHT: number = 192;
+export const AVERAGE_AGE_YEARS: number = 27.2;
