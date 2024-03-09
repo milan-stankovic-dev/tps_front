@@ -10,7 +10,7 @@ export function calculateAgeInMonths(birthDate: string):number{
     const todaysDateDays:number = convertDateToDays(todaysDate);
     const birthDateDays:number = convertDateToDays(birthDateObj);
 
-    return Math.floor((todaysDateDays - birthDateDays)/ 30);
+    return Math.floor((todaysDateDays - birthDateDays)/ 30.44);
 }
 
 function convertDateToDays(date:Date):number{

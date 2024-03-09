@@ -10,7 +10,7 @@ export const PERSONS: PersonDisplay[] = [
         dOB: new Date(2000,1,1),
         ageInMonths: 260,
         cityOfBirthName: 'Beograd',
-        cityOfBirthPPTBR: 11000,
+        cityOfBirthPPTBR: 11_000,
         cityOfResidenceName: 'Beograd',
         cityOfResidencePPTBR: 11_000
     },
@@ -22,7 +22,7 @@ export const PERSONS: PersonDisplay[] = [
         dOB: new Date(2002,2,4),
         ageInMonths: 180,
         cityOfBirthName: 'Niš',
-        cityOfBirthPPTBR: 18000,
+        cityOfBirthPPTBR: 18_000,
         cityOfResidenceName: 'Beograd',
         cityOfResidencePPTBR: 11_000
     },
@@ -91,3 +91,16 @@ export const SMEDEREVCI : PersonDisplay[] = [
 
 export const MAX_HEIGHT: number = 192;
 export const AVERAGE_AGE_YEARS: number = 27.2;
+
+export const PERSON_DISPLAY: PersonDisplay = {
+    id: 12,
+    firstName: 'Jovana',
+    lastName : 'Sarić',
+    heightInCm: 170,
+    dOB: new Date(2000,2,12),
+    ageInMonths: 260,
+    cityOfBirthName: 'Niš',
+    cityOfBirthPPTBR: 18_000,
+    cityOfResidenceName: 'Beograd',
+    cityOfResidencePPTBR: 11_000
+}
