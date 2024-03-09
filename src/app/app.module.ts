@@ -11,8 +11,8 @@ import { RouterLink } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { PersonDropdownComponent } from './person/person-dropdown/person-dropdown.component';
 import { PersonUpdateComponent } from './person/person-update/person-update.component';
-import { ViewsComponent } from './views/views.component';
-import { StatsComponent } from './stats/stats.component';
+import { ViewsComponent } from './person/views/views.component';
+import { StatsComponent } from './person/stats/stats.component';
 
 
 @NgModule({

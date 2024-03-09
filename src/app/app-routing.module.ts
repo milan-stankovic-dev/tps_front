@@ -4,8 +4,8 @@ import { PersonFormComponent } from './person/person-form/person-form.component'
 import { PersonTableComponent } from './person/person-table/person-table.component';  
 import { PersonDropdownComponent } from './person/person-dropdown/person-dropdown.component';
 import { PersonUpdateComponent } from './person/person-update/person-update.component';
-import { ViewsComponent } from './views/views.component';
-import { StatsComponent } from './stats/stats.component';
+import { ViewsComponent } from './person/views/views.component';
+import { StatsComponent } from './person/stats/stats.component';
 
 const routes: Routes = [
   {
