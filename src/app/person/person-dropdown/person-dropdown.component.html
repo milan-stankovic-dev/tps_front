@@ -20,7 +20,9 @@
         (updated)="onPersonUpdated($event)"
     ></app-person-insert>
 
-<app-person-list *ngIf="findByIdLocally(selectedId).length > 0 && 
+<app-person-table *ngIf="findByIdLocally(selectedId).length > 0 && 
     mode == 'brisanje'" [displayExtras]="false" 
-[filteredPersons]="findByIdLocally(selectedId)"></app-person-list>
+[filteredPersons]="findByIdLocally(selectedId)" 
+[title]="'Izabrana osoba'"
+[regularMode]="false"></app-person-table>
 

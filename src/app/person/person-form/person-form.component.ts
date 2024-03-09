@@ -89,7 +89,7 @@ export class PersonFormComponent {
       return this.title === 'Unesite Osobu';
   }
 
-  saveOrUpdatePerson(apiCallFunction: (p: PersonSave) => Observable<PersonSave>) {
+  saveOrUpdatePerson(apiCallFunction: (p: PersonSave) => Observable<PersonSave>):void {
       const personToSave: PersonSave = {
       id: this.insertForm.get('id')!.value,
       firstName: this.insertForm.get('firstName')!.value,
@@ -128,7 +128,7 @@ export class PersonFormComponent {
       stringResp = stringResp.concat('\nMaksimalna vrednost prekoračena.');
     }
     if(control?.hasError('min')){
-      stringResp = stringResp.concat('\nMinimalna vrednost je 11000.');
+      stringResp = stringResp.concat('\nMinimalna vrednost je prekoračena.');
     }
     if(control?.hasError('pattern')){
       stringResp = stringResp.concat('\nPogrešan format.');
