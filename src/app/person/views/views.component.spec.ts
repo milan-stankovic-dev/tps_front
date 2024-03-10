@@ -38,18 +38,18 @@ fdescribe('ViewsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should fetch api data and display views properly.', ()=> {
+  it('should fetch api data and display views properly.', async ()=> {
       fixture.detectChanges();
 
-      fixture.whenStable().then(()=>{
+        await fixture.whenStable();
         expect(component.smederevci).toBe(SMEDEREVCI);
         expect(component.adults).toBe(ADULTS);
 
         const smederevciTable = el.query(By.css('#smederevciTable'));
         const adultsTable = el.query(By.css('#adultsTable'));
-
+        
         expect(smederevciTable).toBeTruthy();
         expect(adultsTable).toBeTruthy();
-      });
+
   });
 });
