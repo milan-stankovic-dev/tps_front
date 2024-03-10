@@ -7,7 +7,7 @@ import { PersonUpdateComponent } from './person/person-update/person-update.comp
 import { ViewsComponent } from './person/views/views.component';
 import { StatsComponent } from './person/stats/stats.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: PersonFormComponent
