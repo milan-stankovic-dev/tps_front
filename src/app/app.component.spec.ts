@@ -1,12 +1,25 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { DebugElement } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { By } from '@angular/platform-browser';
 
-describe('AppComponent', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [RouterTestingModule],
-    declarations: [AppComponent]
-  }));
+fdescribe('AppComponent', () => {
+  let appComponent: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let el: DebugElement;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports : [RouterOutlet],
+      declarations: [AppComponent, HeaderComponent]
+    });
+    fixture = TestBed.createComponent(AppComponent);
+    appComponent = fixture.componentInstance;
+    el = fixture.debugElement;
+  });
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -14,16 +27,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'tps_front'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('tps_front');
-  });
+  it('Should have header and router', () => {
+    const headerElement = el.query(By.directive(HeaderComponent));
+    const routerElement = el.query(By.css('router-outlet'));
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('tps_front app is running!');
+    expect(headerElement).toBeTruthy();
+    expect(routerElement).toBeTruthy();
+
+    expect(headerElement.componentInstance instanceof HeaderComponent)
+        .toBeTruthy();
+    expect(routerElement.nativeElement.tagName.toLowerCase())
+        .toBe('router-outlet');
   });
 });
