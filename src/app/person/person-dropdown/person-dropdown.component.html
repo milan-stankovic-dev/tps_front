@@ -13,14 +13,14 @@
 <button class="frm-btn" *ngIf="mode == 'brisanje'" (click)="deletePersonByID(
     selectedId)"> OBRIŠI </button>
 
-<app-person-insert *ngIf="findByIdLocally(selectedId).length > 0 &&
+<app-person-insert id="person-insert" *ngIf="findByIdLocally(selectedId).length > 0 &&
     mode == 'ažuriranje'" [title]="'Ažuriraj Osobu'" 
     [personForUpdate]="personDisplayToSave(
         findByIdLocally(selectedId)[0])"
         (updated)="onPersonUpdated($event)"
     ></app-person-insert>
 
-<app-person-table *ngIf="findByIdLocally(selectedId).length > 0 && 
+<app-person-table id="person-table" *ngIf="findByIdLocally(selectedId).length > 0 && 
     mode == 'brisanje'" [displayExtras]="false" 
 [filteredPersons]="findByIdLocally(selectedId)" 
 [title]="'Izabrana osoba'"

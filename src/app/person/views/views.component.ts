@@ -17,12 +17,18 @@ export class ViewsComponent {
   ngOnInit() {
     this.makeApiCall(this.personViewService.getAllSmederevci).subscribe(
       persons => this.smederevci = persons,
-      error => console.error('Error', error)
+      error => {
+        console.error('Error', error);
+        alert("GREŠKA " + error.error);
+      }
     );
 
     this.makeApiCall(this.personViewService.getAllAdults).subscribe(
       persons => this.adults = persons,
-      error => console.error('Error', error)
+      error => {
+        console.error('Error', error);
+        alert("GREŠKA " + error.error);
+      }
     );
   }
 

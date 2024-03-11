@@ -1,13 +1,13 @@
 <h1 class="title">{{ title }}</h1>
 <div *ngIf="displayExtras">
 <label>PRETRAGA PO IMENU:   </label>
-<input type="text" placeholder="Pretraži..." 
+<input id="first-name-input" type="text" placeholder="Pretraži..." 
         [(ngModel)] = "nameSearch"
         (keyup)="filterBy('firstName', nameSearch)" >
 <br>
 <br>
 <label>PRETRAGA PO PREZIMENU:   </label>
-<input type="text" placeholder="Pretraži..."
+<input id="last-name-input" type="text" placeholder="Pretraži..."
         [(ngModel)] = "lastNameSearch"
         (keyup)="filterBy('lastName', lastNameSearch)">
 <br>

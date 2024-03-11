@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { PersonTableComponent } from './person-table.component';
 import { PersonService } from 'src/app/service/person.service';
@@ -59,7 +59,68 @@ fdescribe('PersonListComponent', () => {
       expect(row.textContent).toContain(person.lastName);
     }
   });
-  it('filtering works', async()=>{
-      //TODO
+
+  it('filtering works first name', async()=>{
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(component.persons)
+      .toEqual(component.filteredPersons);
+      
+      component.filterBy('firstName','Mar');
+
+      expect(component.filteredPersons)
+      .toEqual([PERSONS[0]]);
+        
+  });
+
+  it('filtering works last name', async()=>{
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(component.persons)
+    .toEqual(component.filteredPersons);
+    
+    component.filterBy('lastName','Krsti');
+
+    expect(component.filteredPersons)
+    .toEqual([PERSONS[2]]);
+      
+});
+  it('filtering works empty search', async()=>{
+
+  fixture.detectChanges();
+  await fixture.whenStable();
+
+  expect(component.persons)
+  .toEqual(component.filteredPersons);
+  
+  component.filterBy('firstName','');
+
+  expect(component.filteredPersons)
+  .toEqual(PERSONS);
+    
+  });
+  it('input events trigger filters correctly', () => {
+    fixture.detectChanges();
+    const inputFnameSpy = spyOn(component, 'filterBy');
+
+    const firstNameInput = el.query(By.css('#first-name-input'));
+    const lastNameInput = el.query(By.css('#last-name-input'));
+
+    expect(firstNameInput).toBeTruthy();
+    expect(lastNameInput).toBeTruthy();
+
+    firstNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', {key: 'M'}));
+    firstNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', {key: 'a'}));
+    firstNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', {key: 'r'}));
+    lastNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', {key: 'K'}));
+    lastNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', {key: 'r'}));
+    lastNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', {key: 's'}));
+    lastNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', {key: 't'}));
+    lastNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', {key: 'i'}));
+
+    fixture.detectChanges();
+    expect(component.filterBy).toHaveBeenCalledTimes(8);
   });
 });

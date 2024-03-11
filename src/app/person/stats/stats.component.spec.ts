@@ -4,7 +4,7 @@ import { StatsComponent } from './stats.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { DebugElement } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { PersonStatsService } from 'src/app/service/person-stats.service';
 import { By } from '@angular/platform-browser';
 
@@ -19,9 +19,7 @@ fdescribe('StatsComponent', () => {
   beforeEach(waitForAsync(() => {
     personStatsServiceSpy = jasmine.createSpyObj('PersonStatsService', 
         ['getMaxHeightCm', 'getAverageAgeYears']);
-    personStatsServiceSpy.getMaxHeightCm.and.returnValue(of(190));
-    personStatsServiceSpy.getAverageAgeYears.and.returnValue(of(27.5));
-
+    
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientTestingModule],
       declarations: [StatsComponent],
@@ -47,6 +45,9 @@ fdescribe('StatsComponent', () => {
       expect(component.maxHeightCm).toBe(null);
       expect(component.averageAgeYears).toBe(null);
 
+      personStatsServiceSpy.getMaxHeightCm.and.returnValue(of(190));
+      personStatsServiceSpy.getAverageAgeYears.and.returnValue(of(27.5));
+
       fixture.detectChanges();
 
       expect(personStatsService.getMaxHeightCm).toHaveBeenCalledOnceWith();
@@ -63,4 +64,40 @@ fdescribe('StatsComponent', () => {
       expect((inputElements[1].nativeElement as HTMLInputElement)
             .value).toBe('190');
   });
+  it('should error while fetching maxHeight.', async ()=> {
+      expect(component.maxHeightCm).toBe(null);
+      expect(component.averageAgeYears).toBe(null);
+
+      const alertSpy = spyOn(window, 'alert');
+      const loggerSpy = spyOn(console, 'log');
+      personStatsServiceSpy.getMaxHeightCm.and
+      .returnValue(throwError({error: 'Cannot get max height in cm.'}));
+      personStatsServiceSpy.getAverageAgeYears.and.returnValue(of(27.5));
+
+      fixture.detectChanges();
+
+      expect(personStatsService.getMaxHeightCm).toHaveBeenCalledOnceWith();
+      expect(personStatsService.getAverageAgeYears).toHaveBeenCalledOnceWith();
+
+      await fixture.whenStable();
+        expect(alertSpy).toHaveBeenCalledWith('GREŠKA Cannot get max height in cm.');
+  });
+
+  it('should error while fetching averageAgeYears.', async ()=> {
+    expect(component.maxHeightCm).toBe(null);
+    expect(component.averageAgeYears).toBe(null);
+
+    const alertSpy = spyOn(window, 'alert');
+    personStatsServiceSpy.getMaxHeightCm.and.returnValue(of(190));
+    personStatsServiceSpy.getAverageAgeYears.and
+    .returnValue(throwError({error: 'Cannot get average age years.'}));
+
+    fixture.detectChanges();
+
+    expect(personStatsService.getMaxHeightCm).toHaveBeenCalledOnceWith();
+    expect(personStatsService.getAverageAgeYears).toHaveBeenCalledOnceWith();
+
+    await fixture.whenStable();
+      expect(alertSpy).toHaveBeenCalledWith('GREŠKA Cannot get average age years.');
+});
 });

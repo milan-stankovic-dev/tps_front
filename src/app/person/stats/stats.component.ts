@@ -17,12 +17,18 @@ export class StatsComponent implements OnInit{
   ngOnInit() {
     this.makeApiCall(this.personStatsService.getMaxHeightCm).subscribe(
       maxHeight => this.maxHeightCm = maxHeight,
-      error => console.error('Error', error)
+      error => {
+        console.error('Error', error);
+        alert("GREŠKA " + error.error);
+      }
     );
 
     this.makeApiCall(this.personStatsService.getAverageAgeYears).subscribe(
       averageAge => this.averageAgeYears = averageAge,
-      error => console.error('Error', error)
+      error => {
+        console.error('Error', error);
+        alert("GREŠKA " + error.error);
+      }
     );
   }
 

@@ -39,7 +39,7 @@ export class PersonDropdownComponent implements OnInit{
 
     const userConfirmed = window.confirm("Da li ste sigurni da želite " + 
     "da obrišete osobu? Brisanje je trajno.");
-
+    
     if(userConfirmed){
       this.personService.deletePersonById(id).subscribe((response)=>{
         this.persons = this.filterPersonsBy(id, 

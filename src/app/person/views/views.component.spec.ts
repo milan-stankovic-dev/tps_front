@@ -9,6 +9,7 @@ import { PersonDisplay } from 'src/app/domain/PersonDisplay';
 import { ADULTS, SMEDEREVCI } from 'src/app/test-data/persons';
 import { of } from 'rxjs/internal/observable/of';
 import { By } from '@angular/platform-browser';
+import { throwError } from 'rxjs';
 
 fdescribe('ViewsComponent', () => {
   let component: ViewsComponent;
@@ -19,9 +20,7 @@ fdescribe('ViewsComponent', () => {
   beforeEach(() => {
     personViewServiceSpy = jasmine.createSpyObj('PersonViewService',
     ['getAllSmederevci', 'getAllAdults']);
-    personViewServiceSpy.getAllSmederevci.and.returnValue(of(SMEDEREVCI));
-    personViewServiceSpy.getAllAdults.and.returnValue(of(ADULTS));
-
+    
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       declarations: [ViewsComponent, PersonTableComponent],
@@ -39,7 +38,10 @@ fdescribe('ViewsComponent', () => {
   });
 
   it('should fetch api data and display views properly.', async ()=> {
-      fixture.detectChanges();
+    personViewServiceSpy.getAllSmederevci.and.returnValue(of(SMEDEREVCI));
+    personViewServiceSpy.getAllAdults.and.returnValue(of(ADULTS));
+      
+    fixture.detectChanges();
 
         await fixture.whenStable();
         expect(component.smederevci).toBe(SMEDEREVCI);
@@ -52,4 +54,36 @@ fdescribe('ViewsComponent', () => {
         expect(adultsTable).toBeTruthy();
 
   });
+
+  it('should fail to fetch adults', async ()=> {
+    const alertSpy = spyOn(window, 'alert');
+    
+    personViewServiceSpy.getAllSmederevci.and.returnValue(of(SMEDEREVCI));
+    personViewServiceSpy.getAllAdults.and.returnValue(throwError(
+      {error: 'Cannot get adults.'}));
+
+    fixture.detectChanges();
+    
+    expect(personViewServiceSpy.getAllAdults).toHaveBeenCalledWith();
+    expect(personViewServiceSpy.getAllSmederevci).toHaveBeenCalledWith();
+
+    await fixture.whenStable();
+    expect(alertSpy).toHaveBeenCalledWith('GREŠKA Cannot get adults.');
+    });
+
+    it('should fail to fetch Smederevci', async ()=> {
+      const alertSpy = spyOn(window, 'alert');
+      
+      personViewServiceSpy.getAllSmederevci.and.returnValue(throwError(
+        {error: 'Cannot get Smederevci.'}));
+      personViewServiceSpy.getAllAdults.and.returnValue(of(ADULTS));
+  
+      fixture.detectChanges();
+      
+      expect(personViewServiceSpy.getAllAdults).toHaveBeenCalledWith();
+      expect(personViewServiceSpy.getAllSmederevci).toHaveBeenCalledWith();
+  
+      await fixture.whenStable();
+      expect(alertSpy).toHaveBeenCalledWith('GREŠKA Cannot get Smederevci.');
+      });
 });

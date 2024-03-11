@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PersonDisplay } from 'src/app/domain/PersonDisplay';
 import { PersonService } from 'src/app/service/person.service';
+import * as rfdc from 'rfdc';
 
 @Component({
   selector: 'app-person-table',
@@ -16,7 +17,8 @@ export class PersonTableComponent implements OnInit {
   nameSearch: string = '';
   lastNameSearch: string = '';
   @Input() displayExtras: boolean = true;
- 
+  rfdcClone = rfdc();
+
   constructor (private personService: PersonService){ }
 
   ngOnInit(): void {
@@ -24,21 +26,21 @@ export class PersonTableComponent implements OnInit {
     this.personService.getAllPersons().subscribe((persons) =>{
       console.log(persons);
       this.persons = persons;
-      this.filteredPersons = JSON.parse(JSON.stringify(persons));
+      this.filteredPersons = this.rfdcClone(persons);
     });
   }
   }
 
   filterBy(fieldName: string, searchText: string):void{ 
-    if(searchText === ''){
-      this.filteredPersons = JSON.parse(JSON.stringify(this.persons));
-    } else {
+    if(searchText !== ''){
       this.filteredPersons = this.filteredPersons.filter((person) => {
         const fieldValue:any = (person as any)[fieldName];
         
         return fieldValue?.toString()
           ?.toLowerCase()?.includes(searchText.toLowerCase());
       });
+    } else {
+      this.filteredPersons = this.rfdcClone(this.persons);
     }
   }
 }
