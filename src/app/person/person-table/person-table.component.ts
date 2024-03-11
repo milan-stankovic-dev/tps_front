@@ -32,8 +32,9 @@ export class PersonTableComponent implements OnInit {
   }
 
   filterBy(fieldName: string, searchText: string):void{ 
+    console.log("FILTER BY RUN WITH: '", searchText, "' FOR FIELD: '", fieldName,"'");
     if(searchText !== ''){
-      this.filteredPersons = this.filteredPersons.filter((person) => {
+      this.filteredPersons = this.persons.filter((person) => {
         const fieldValue:any = (person as any)[fieldName];
         
         return fieldValue?.toString()

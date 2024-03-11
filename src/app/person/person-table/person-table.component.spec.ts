@@ -111,16 +111,20 @@ describe('PersonListComponent', () => {
     expect(firstNameInput).toBeTruthy();
     expect(lastNameInput).toBeTruthy();
 
-    firstNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', {key: 'M'}));
-    firstNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', {key: 'a'}));
-    firstNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', {key: 'r'}));
-    lastNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', {key: 'K'}));
-    lastNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', {key: 'r'}));
-    lastNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', {key: 's'}));
-    lastNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', {key: 't'}));
-    lastNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', {key: 'i'}));
+    firstNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', { key: 'M' }));
+    firstNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', { key: 'a' }));
+    firstNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', { key: 'r' }));
+    firstNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', { key: 'Backspace' }));
+
+    lastNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', { key: 'K' }));
+    lastNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', { key: 'r' }));
+    lastNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', { key: 's' }));
+    lastNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', { key: 't' }));
+    lastNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', { key: 'i' }));
+    lastNameInput.nativeElement.dispatchEvent(new KeyboardEvent('keyup', { key: 'Backspace' }));
 
     fixture.detectChanges();
-    expect(component.filterBy).toHaveBeenCalledTimes(8);
-  });
+
+    expect(component.filterBy).toHaveBeenCalledTimes(10);
+});
 });
