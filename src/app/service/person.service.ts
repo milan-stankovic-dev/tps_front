@@ -20,8 +20,8 @@ export class PersonService {
     return this.http.post<PersonSave>(`${this.apiUrl}`, person);
   }
 
-  deletePersonById(id:number):Observable<never>{
-    return this.http.delete<never>(`${this.apiUrl}/${id}`);
+  deletePersonById(id:number):Observable<undefined>{
+    return this.http.delete<undefined>(`${this.apiUrl}/${id}`);
   }
 
   updatePerson(person:PersonSave):Observable<PersonSave>{

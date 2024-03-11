@@ -22,8 +22,6 @@ describe('PersonDeleteComponent', () => {
   beforeEach(() => {
     personServiceSpy = jasmine.createSpyObj('PersonService',
     ['getAllPersons', 'deletePersonById']);
-    
-    personServiceSpy.deletePersonById.and.returnValue(of());
 
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, FormsModule, ReactiveFormsModule],
@@ -84,6 +82,7 @@ describe('PersonDeleteComponent', () => {
 
   it('should delete person on button click', async () => {
       personServiceSpy.getAllPersons.and.returnValue(of(PERSONS));
+      personServiceSpy.deletePersonById.and.returnValue(of(undefined));
       fixture.detectChanges();
       component.mode = 'brisanje';
 
@@ -103,7 +102,7 @@ describe('PersonDeleteComponent', () => {
       expect(personServiceSpy.deletePersonById)
       .toHaveBeenCalledOnceWith(1);
       await fixture.whenStable();
-      // expect(alertSpy).toHaveBeenCalledWith('Brisanje uspešno!');
+      expect(alertSpy).toHaveBeenCalledWith('Brisanje uspešno!');
   });
 
   it('should fail to delete person on button click', async () => {
@@ -212,6 +211,43 @@ describe('PersonDeleteComponent', () => {
     const brisanjeEl2 = el.query(By.css('#person-table'));
     expect(brisanjeEl2).toBeFalsy();
     
+  });
+
+  it('should apply results of successful delete', async ()=>{
+    personServiceSpy.getAllPersons.and.returnValue(of(PERSONS));
+    personServiceSpy.deletePersonById.and.returnValue(of(undefined));
+    fixture.detectChanges();
+    component.mode = 'brisanje';
+
+    await fixture.whenStable();
+
+    spyOn(window, 'confirm').and.returnValue(true);
+    const alertSpy = spyOn(window, 'alert');
+    const filterSpy = spyOn(component, 'filterPersonsBy');
+
+    component.deletePersonByID(1);
+
+    expect(alertSpy).toHaveBeenCalledOnceWith('Brisanje uspešno!');
+    expect(filterSpy).toHaveBeenCalled();
+    expect(component.selectedId).toBeFalsy();
+  });
+
+  it('should notify on unsuccessful delete', async ()=>{
+    personServiceSpy.getAllPersons.and.returnValue(of(PERSONS));
+    personServiceSpy.deletePersonById.and.returnValue(throwError(
+      {error: 'Cannot delete person.'}));
+    fixture.detectChanges();
+    component.mode = 'brisanje';
+
+    await fixture.whenStable();
+
+    spyOn(window, 'confirm').and.returnValue(true);
+    const alertSpy = spyOn(window, 'alert');
+    const filterSpy = spyOn(component, 'filterPersonsBy');
+
+    component.deletePersonByID(1);
+
+    expect(alertSpy).toHaveBeenCalledOnceWith('GREŠKA "Cannot delete person."');
   });
   
 });

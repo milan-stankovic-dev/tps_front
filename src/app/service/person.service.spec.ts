@@ -62,7 +62,7 @@ describe('PersonService', () => {
   });
 
   it('should delete a person', () => {
-    service.deletePersonById(1).subscribe((response : never) => {
+    service.deletePersonById(1).subscribe((response : undefined) => {
       expect(response).toBeFalsy(); 
     });
     const mockReq = http.expectOne(apiUrl + "/1");

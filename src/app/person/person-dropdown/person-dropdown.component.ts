@@ -39,15 +39,19 @@ export class PersonDropdownComponent implements OnInit{
 
     const userConfirmed = window.confirm("Da li ste sigurni da želite " + 
     "da obrišete osobu? Brisanje je trajno.");
-    
+    console.log("ODIGRAVA SE 1");
     if(userConfirmed){
+      console.log('ODIGRAVA SE 2')
       this.personService.deletePersonById(id).subscribe((response)=>{
         this.persons = this.filterPersonsBy(id, 
           (deletedId, currentId) => deletedId != currentId);
         this.selectedId = undefined;
+        console.log('ODIGRAVA SE 3')
         alert("Brisanje uspešno!");
+        console.log('ODIGRAVA SE 4');
       },
       (error) => {
+        console.log('ODIGRAVA SE 5')
         alert("GREŠKA " + JSON.stringify(error.error));
         console.log(error.error);
       });
