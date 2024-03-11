@@ -13,6 +13,8 @@ import { StatsComponent } from "./person/stats/stats.component";
 import { DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { AppComponent } from "./app.component";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 describe('App routing module', () => {
     let router: Router;
@@ -24,10 +26,11 @@ describe('App routing module', () => {
 
     beforeEach(waitForAsync(()=>{
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule.withRoutes(routes)],
+            imports: [RouterTestingModule.withRoutes(routes), HttpClientTestingModule,
+            FormsModule, ReactiveFormsModule],
             declarations: [PersonFormComponent, PersonDropdownComponent, 
             PersonTableComponent, PersonUpdateComponent, ViewsComponent,
-            StatsComponent]
+            StatsComponent, HeaderComponent, AppComponent]
         }).compileComponents();
     }));
 
@@ -43,104 +46,78 @@ describe('App routing module', () => {
     });
 
     it('Should navigate to insert with PersonFormComponent.', async () => {
-        // appFixture.detectChanges();
         links[0].nativeElement.click();
       
         await appFixture.whenStable();
-        expect(location.path()).toBe('/');
+        expect(location.path()).toBe('/insert');
         
-        async () => {
-            await fixture.whenStable();
-            const componentDisplayed = appFixture
-                .debugElement.query(By.directive(PersonFormComponent));
+        const componentDisplayed = appFixture
+            .debugElement.query(By.directive(PersonFormComponent));
 
-            expect(componentDisplayed).toBeTruthy();    
-        }
+        expect(componentDisplayed).toBeTruthy();    
       });
 
       it('Should navigate to list with PersonTableComponent.', async () => {
-        router.navigate(['/list']);
-        // links[1].nativeElement.click();
+        links[1].nativeElement.click();
 
         await appFixture.whenStable();
     
-        appFixture.detectChanges();
-    
         expect(location.path()).toBe('/list');
 
-        async() => {
         await fixture.whenStable();
         const componentDisplayed = appFixture.debugElement.query(By.directive(PersonTableComponent));
     
         expect(componentDisplayed).toBeTruthy();
-        }
     });
 
     it('Should navigate to delete with PersonDropdownComponent.', async () => {
-        router.navigate(['/delete']);
-
+        links[2].nativeElement.click();
+        
         await appFixture.whenStable();
-    
-        appFixture.detectChanges();
     
         expect(location.path()).toBe('/delete');
 
-        async() => {
         await fixture.whenStable();
         const componentDisplayed = appFixture.debugElement.query(By.directive(PersonDropdownComponent));
     
         expect(componentDisplayed).toBeTruthy();
-        }
     });
 
     it('Should navigate to update with PersonDropdownComponent.', async () => {
-        router.navigate(['/update']);
+        links[3].nativeElement.click();
 
         await appFixture.whenStable();
-    
-        appFixture.detectChanges();
     
         expect(location.path()).toBe('/update');
 
-        async() => {
         await fixture.whenStable();
         const componentDisplayed = appFixture.debugElement.query(By.directive(PersonDropdownComponent));
         expect(componentDisplayed).toBeTruthy();
-        }
     });
 
     it('Should navigate to views with ViewsComponent.', async () => {
-        router.navigate(['/views']);
+        links[4].nativeElement.click();
 
         await appFixture.whenStable();
     
-        appFixture.detectChanges();
-    
         expect(location.path()).toBe('/views');
 
-        async() => {
         await fixture.whenStable();
         const componentDisplayed = appFixture.debugElement.query(By.directive(ViewsComponent));
     
         expect(componentDisplayed).toBeTruthy();
-        }
     });
 
     it('Should navigate to stats with StatsComponent.', async () => {
-        router.navigate(['/stats']);
-
+        links[5].nativeElement.click();
         await appFixture.whenStable();
-    
-        appFixture.detectChanges();
     
         expect(location.path()).toBe('/stats');
 
-        async() => {
         await fixture.whenStable();
         const componentDisplayed = appFixture.debugElement.query(By.directive(StatsComponent));
     
         expect(componentDisplayed).toBeTruthy();
-        }
     });
     
 });
