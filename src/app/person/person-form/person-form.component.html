@@ -1,6 +1,6 @@
 <h1 class = "title">{{ title }}</h1>
 
-<form [formGroup] = "insertForm">
+<form id="form" [formGroup] = "insertForm">
   <div class="field" *ngIf="!isSaveVisible()">
     <label class="lbl">ID:    </label>
     <input type="text" class="input" 
@@ -9,7 +9,7 @@
   <br *ngIf="!isSaveVisible()">
     <div class="field">
       <label class="lbl">Ime:   </label>
-      <input type="text" class="input" 
+      <input id="first-name-input" type="text" class="input" 
       placeholder="format: Veliko slovo, 30 slova maks " 
       formControlName="firstName"
       required>
@@ -23,7 +23,7 @@
     <br>
     <div class="field">
       <label class="lbl">Prezime:   </label>
-      <input type="text" class="input" 
+      <input id="last-name-input" type="text" class="input" 
       placeholder="format: Veliko slovo, 30 slova maks " 
       formControlName="lastName">
     </div>
@@ -36,7 +36,7 @@
     <br>
     <div class="field">
       <label class="lbl">Visina u cm:   </label>
-      <input type="number" class="input" 
+      <input id="input-height-in-cm" type="number" class="input" 
       placeholder="format: Od 70 do 260. " 
       formControlName="heightInCm"
       required>
@@ -50,7 +50,7 @@
     <br>
     <div class="field">
       <label class="lbl">Datum rođenja:   </label>
-      <input type="text" class="input" 
+      <input id="input-dob" type="text" class="input" 
       placeholder="format: yyyy/MM/dd" 
       formControlName="dateOfBirth"
       required>
@@ -64,7 +64,7 @@
     <br>
     <div class="field">
       <label class="lbl">PPT rodnog grada:   </label>
-      <input type="number" class="input" 
+      <input id="input-ppt-birth" type="number" class="input" 
       placeholder="format: Od 11000 do 40000"
       formControlName="birthCityCode">
     </div>
@@ -77,7 +77,7 @@
     <br>
     <div class="field">
       <label class="lbl">PPT grada stanovanja:   </label>
-      <input type="number" class="input" 
+      <input id="input-ppt-residence" type="number" class="input" 
       placeholder="format: Od 11000 do 40000" 
       formControlName="residenceCityCode">
     </div>
@@ -90,7 +90,7 @@
     <br>
     <div class="field">
       <label class="lbl">Starost (u mesecima):   </label>
-      <input type="number" class="input" 
+      <input id="input-age-months" type="number" class="input" 
       placeholder="računam starost..." 
       formControlName="age"
       [value]="calculateAgeIfPossible()">
@@ -98,12 +98,12 @@
     <br>
     <div style="display: flex;">
       <div style="margin-right: 30px;">
-        <button class="frm-btn" type="submit" 
+        <button id="btn-save" class="frm-btn" type="submit" 
         *ngIf="isSaveVisible()" (click)="savePerson()" 
         [disabled] = "!insertForm.valid">Sačuvaj</button>
       </div>
       <div>
-        <button class="frm-btn" type="submit"
+        <button id="btn-update" class="frm-btn" type="submit"
         *ngIf="!isSaveVisible()" (click)="updatePerson()"
         [disabled]="!insertForm.valid"
         >Ažuriraj</button>

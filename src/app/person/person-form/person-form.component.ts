@@ -99,7 +99,6 @@ export class PersonFormComponent {
       birthCityCode: this.insertForm.get('birthCityCode')!.value,
       residenceCityCode: this.insertForm.get('residenceCityCode')!.value
     };
-    alert(JSON.stringify(personToSave));
     apiCallFunction.bind(this.personService)(personToSave).subscribe(
       (savedPerson) => {
         alert("Osoba Sačuvana! " + JSON.stringify(savedPerson));
