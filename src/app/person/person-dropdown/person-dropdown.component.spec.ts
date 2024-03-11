@@ -12,7 +12,7 @@ import { PersonTableComponent } from '../person-table/person-table.component';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { PersonFormComponent } from '../person-form/person-form.component';
 
-fdescribe('PersonDeleteComponent', () => {
+describe('PersonDeleteComponent', () => {
   let component: PersonDropdownComponent;
   let fixture: ComponentFixture<PersonDropdownComponent>;
   let personServiceSpy: jasmine.SpyObj<PersonService>;

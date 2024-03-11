@@ -1,6 +1,6 @@
 import { calculateAgeInMonths } from "./personUtility";
 
-fdescribe('PersonUtility', () => {
+describe('PersonUtility', () => {
     it('Calculates age in months wrong pattern', () => {
         expect(() => calculateAgeInMonths('wrong-pattern'))
         .toThrowError('Datum rođenja nije u odgovarajućem formatu.');

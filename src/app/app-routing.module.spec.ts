@@ -14,7 +14,7 @@ import { DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { AppComponent } from "./app.component";
 
-fdescribe('App routing module', () => {
+describe('App routing module', () => {
     let router: Router;
     let fixture: ComponentFixture<HeaderComponent>;
     let appFixture :ComponentFixture<AppComponent>;

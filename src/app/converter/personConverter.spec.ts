@@ -2,7 +2,7 @@ import { PersonSave } from "../domain/PersonSave";
 import { PERSON_DISPLAY } from "../test-data/persons";
 import { personDisplayToSave } from "./personConverter";
 
-fdescribe('PersonConverter', () => {
+describe('PersonConverter', () => {
     it('Should convert person types correctly', () => {
         const personSave: PersonSave = personDisplayToSave(
             PERSON_DISPLAY

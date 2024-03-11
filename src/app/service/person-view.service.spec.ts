@@ -7,7 +7,7 @@ import { ADULTS, SMEDEREVCI } from '../test-data/persons';
 
 const apiUrl: string = 'http://localhost:8080/person/views';
 
-fdescribe('PersonViewService', () => {
+describe('PersonViewService', () => {
   let service: PersonViewService;
   let http: HttpTestingController; 
 

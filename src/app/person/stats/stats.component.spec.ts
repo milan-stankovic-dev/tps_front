@@ -8,7 +8,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { PersonStatsService } from 'src/app/service/person-stats.service';
 import { By } from '@angular/platform-browser';
 
-fdescribe('StatsComponent', () => {
+describe('StatsComponent', () => {
   let component: StatsComponent;
   let fixture: ComponentFixture<StatsComponent>;
   let el: DebugElement;

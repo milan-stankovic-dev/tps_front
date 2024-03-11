@@ -6,7 +6,7 @@ import { DebugElement } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { By } from '@angular/platform-browser';
 
-fdescribe('AppComponent', () => {
+describe('AppComponent', () => {
   let appComponent: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
   let el: DebugElement;

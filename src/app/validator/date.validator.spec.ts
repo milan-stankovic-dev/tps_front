@@ -1,7 +1,7 @@
 import { AbstractControl, FormControl } from "@angular/forms";
 import { dateValidator } from "./date.validator";
 
-fdescribe('DateValidator', () => {
+describe('DateValidator', () => {
     it('Invalid date 1', () => {
         const control: AbstractControl = 
         new FormControl('invalid date input');

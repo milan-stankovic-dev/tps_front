@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-fdescribe('PersonUpdateComponent', () => {
+describe('PersonUpdateComponent', () => {
   let component: PersonUpdateComponent;
   let fixture: ComponentFixture<PersonUpdateComponent>;
   let el: DebugElement;

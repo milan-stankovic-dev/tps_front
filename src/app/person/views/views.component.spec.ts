@@ -11,7 +11,7 @@ import { of } from 'rxjs/internal/observable/of';
 import { By } from '@angular/platform-browser';
 import { throwError } from 'rxjs';
 
-fdescribe('ViewsComponent', () => {
+describe('ViewsComponent', () => {
   let component: ViewsComponent;
   let fixture: ComponentFixture<ViewsComponent>;
   let personViewServiceSpy: jasmine.SpyObj<PersonViewService>;

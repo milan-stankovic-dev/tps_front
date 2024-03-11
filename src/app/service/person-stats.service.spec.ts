@@ -6,7 +6,7 @@ import { MAX_HEIGHT, AVERAGE_AGE_YEARS } from '../test-data/persons';
 
 const apiUrl: string = 'http://localhost:8080/person/stats';
 
-fdescribe('PersonStatsService', () => {
+describe('PersonStatsService', () => {
   let service: PersonStatsService;
   let http: HttpTestingController;
 

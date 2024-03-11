@@ -7,7 +7,7 @@ import { PersonSave } from '../domain/PersonSave';
 
 const apiUrl: string = 'http://localhost:8080/person';
 
-fdescribe('PersonService', () => {
+describe('PersonService', () => {
   let service: PersonService;
   let http: HttpTestingController;
 
